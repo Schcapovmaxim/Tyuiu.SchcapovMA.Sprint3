@@ -11,13 +11,22 @@ namespace Tyuiu.SchcapovMA.Sprint3.Task7.V25.Lib
             valueArray = new double[len];
             double y;
             int count = 0;
-            for (int x = startValue; x <= stopValue; x++) 
+            for (int x = startValue; x <= stopValue; x++)
             {
-                y = Math.Round(Math.Cos(x) + 2 * x - Math.Sin(x) * 3 * x, 2);
-                valueArray[count] = y;
-                count++;
+                try
+                {
+                    y = Math.Round(Math.Cos(x) + 2 * x - Math.Sin(x) * 3 * x, 2);
+                    valueArray[count] = y;
+                    count++;
+                }
+                catch (DivideByZeroException ex)
+                {
+                    valueArray[count] = 0;
+                    count++;
+                }
             }
             return valueArray;
+
         }
     }
 }
